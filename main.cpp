@@ -58,4 +58,21 @@ int main()
     v = v2;
 
     std::cout << v;
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // VectoredList operator+(const VectoredList& rhs) const;
+    // ktory polaczy obydwa kontenery w jeden + testy [1p]
+
+    auto vAdd1 = VectoredList();
+    auto vAdd2 = VectoredList();
+    for (int i = 0; i < 20; ++i)
+    {
+        (i % 2 ? vAdd1 : vAdd2).push_back(std::to_string(i));
+    }
+
+    auto vAdd3 = vAdd1 + vAdd2;
+
+    std::cout << "Test operatora +" << std::endl;
+    std::cout << vAdd3;
 }

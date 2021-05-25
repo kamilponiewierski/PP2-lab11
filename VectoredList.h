@@ -89,6 +89,8 @@ public:
 
     VectoredList &operator=(const VectoredList &fraction);
 
+    VectoredList &operator+(const VectoredList &other);
+
     Iterator begin() const
     {
         return Iterator(this->head);
@@ -107,6 +109,10 @@ public:
     ~VectoredList();
 
     void clearBuckets();
+
+    int getSize() const;
+
+    int getCapacity() const;
 };
 
 std::ostream &operator<<(std::ostream &os, const VectoredList &v);

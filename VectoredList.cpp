@@ -29,6 +29,11 @@ void VectoredList::push_back(std::string elem)
 
     this->tail->push_back(std::move(elem));
     this->size_ += 1;
+
+    if (capacity_ - size_ <= 0)
+    {
+        this->add_bucket();
+    }
 }
 
 void VectoredList::add_bucket()
@@ -154,6 +159,31 @@ void VectoredList::pop_back()
         this->tail->data[this->tail->elemCount] = std::string("");
         this->tail->elemCount -= 1;
     }
+}
+
+VectoredList &VectoredList::operator+(const VectoredList &other)
+{
+    auto *tmp = new VectoredList();
+    tmp->add_bucket();
+    for (auto &elem: *this) {
+        tmp->push_back(elem);
+    }
+
+    for (auto &elem: other) {
+        tmp->push_back(elem);
+    }
+
+    return *tmp;
+}
+
+int VectoredList::getSize() const
+{
+    return size_;
+}
+
+int VectoredList::getCapacity() const
+{
+    return capacity_;
 }
 
 
